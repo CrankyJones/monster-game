@@ -1,5 +1,5 @@
 import React from 'react';
-import { TILE_RATIO, WORLD_SIZE } from '../constants/constants';
+import { TILE_RATIO, WORLD_SIZE } from '../constants/Constants';
 import Tile from './Tile';
 // import tile images from '../images'
 
@@ -18,6 +18,7 @@ const TileLayout = () => {
     ]
   return (
    // tiles.map
-)}
+  )
+}
 
 export default TileLayout;

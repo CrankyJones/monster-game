@@ -13,9 +13,9 @@ code {
 }
 
 
-.world{
+.world {
   position: relative;
-  min-height:
+  /* min-height: */
 }
 
 .tile {
