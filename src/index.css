@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.world{
+  position: relative;
+  min-height:
+}
+
+.tile {
+  position: absolute;
+  width: calc(100% / 10);
+  height: auto;
+  transform: translateX(-50%)
+}
