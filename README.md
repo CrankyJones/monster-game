@@ -1,8 +1,47 @@
+# Monster Game (WIP)
+### __**By: Geof Rosenmund**__
+
+#### Created on 5/7/2021
+---
+
+## Description
+  A simple isometric game in which you play as a monster that navigates a tile grid in order to destroy buildings. Players move using the arrow keys.
+
+---
+## Technologies Used
+
+* JavaScript
+* JSX
+* React
+* Recoil
+---
 
 
+## Setup/Installation
+
+* To clone this directory, navigate in your terminal to the desired location of the project and run command `git clone https://github.com/CrankyJones/monster-game.git`
+* Navigate to top level of the directory with command `cd monster-game`
+* Run local server with command `npm run start`
+
+---
+
+## Known Bugs
+  Currently lacks art assets and critical functionality.
+
+---
+
+### License
+
+[MIT](LICENSE.txt)
+
+---
+
+### Contact Information
+
+* _Contact Geof via [Email](mailto:geof.rosenmunds.email@gmail.com) or [LinkedIn](https://www.linkedin.com/in/geofrosenmund/), or check out his [Github](https://github.com/CrankyJones)._
 
 
-
+<hr/>
 
 ## Available Scripts
 
@@ -70,3 +109,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
