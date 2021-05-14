@@ -6,13 +6,13 @@ import {
   useRecoilState,
   useRecoilValue
 } from 'recoil';
-import World from "./World";
+import Game from "./Game";
 
 function App() {
   return(
     <>
     <RecoilRoot>
-      <World/>
+      <Game/>
     </RecoilRoot>
     </>
   );

@@ -24,3 +24,9 @@ code {
   height: auto;
   transform: translateX(-50%)
 }
+.monster{
+  z-index: 1000;
+  position: absolute;
+  transform: scale(200%) translate(-30%, -50%);
+  height: auto
+}
