@@ -4,7 +4,7 @@ import { atom, useRecoilState}  from 'recoil';
 function Inputs() {
   const monsterState = atom ({
     key: "monsterState",
-    default: { x:5, y:9, facing: 'down', dead: 'false'},
+    default: { x:5, y:10, facing: 'down', dead: 'false'},
   });
 
   const [monster, setMonster] = useRecoilState(monsterState);
@@ -25,16 +25,13 @@ function Inputs() {
   
   const handleKeyPress = useCallback((e) => {
     e.preventDefault();
-    if (!allowInput) {
+    if (!allowInput || monster.dead === true) {
       return;
     }
-    console.log(e);
-    console.log(allowInput);
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
       setAllowInput(true);
     }, 500);
-    console.log(allowInput);
     if (e.keyCode === 37) {
       // left
       setMonster ({

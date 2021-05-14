@@ -27,6 +27,16 @@ code {
 .monster{
   z-index: 1000;
   position: absolute;
-  transform: scale(200%) translate(-30%, -50%);
-  height: auto
+  height: auto;
+  width: 10vw;
+  size: absolute;
+  transform: scale(75%) translate(0%, -125%);
+}
+.building{
+  z-index: 1000;
+  position: absolute;
+  height: auto;
+  width: 10vw;
+  size: absolute;
+  transform: scale(75%) translate(0%, -125%);
 }

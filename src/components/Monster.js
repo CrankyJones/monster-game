@@ -9,14 +9,13 @@ import monsterSW from '../img/monsterSW.png';
 const Monster = () => {
   const monsterState = atom ({
     key: 'monsterState',
-    default: { x:5, y:9, facing: 'up', dead: 'false'}
+    default: { x:5, y:10, facing: 'up', dead: 'false'}
   })
   const monster = useRecoilValue(monsterState);
 
   const yOffset = ((100 / WORLD_SIZE) * (TILE_RATIO / 2.75))
   const yBase = monster.y * yOffset + yOffset;
   const xBase = 50 - (100/22) * monster.y;
-  const z = 1000
   const yAbs = yBase + yOffset * monster.x;
   const xAbs = xBase + (100/22) * monster.x;
 
