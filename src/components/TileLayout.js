@@ -34,4 +34,4 @@ const TileLayout = () => {
     })
   )
 }
-export default TileLayout;
+export default React.memo(TileLayout);

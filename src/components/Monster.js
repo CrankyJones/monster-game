@@ -11,35 +11,32 @@ const Monster = () => {
     key: 'monsterState',
     default: { x:5, y:9, facing: 'up', dead: 'false'}
   })
-  const { x, y, facing } = useRecoilValue(monsterState);
+  const monster = useRecoilValue(monsterState);
 
   const yOffset = ((100 / WORLD_SIZE) * (TILE_RATIO / 2.75))
-  const yBase = y * yOffset + yOffset;
-  const xBase = 50 - (100/22) * y;
+  const yBase = monster.y * yOffset + yOffset;
+  const xBase = 50 - (100/22) * monster.y;
   const z = 1000
-  const yAbs = yBase + yOffset * x;
-  const xAbs = xBase + (100/22) * x;
+  const yAbs = yBase + yOffset * monster.x;
+  const xAbs = xBase + (100/22) * monster.x;
 
   let monsterImg;
   // if (monster.dead) {
   //   monsterImg = monsterDead;
   // } else 
   
-  if (facing === 'up') {
+  if (monster.facing === 'up') {
     monsterImg = monsterNE;
-  } else if (facing === 'right') {
+  } else if (monster.facing === 'right') {
     monsterImg = monsterSE;
-  } else if (facing === 'down') {
+  } else if (monster.facing === 'down') {
     monsterImg = monsterSW;
-  } else if (facing === 'left') {
+  } else if (monster.facing === 'left') {
     monsterImg = monsterNW;
   }
   
   return (
   <img src={monsterImg}
-      x={xAbs}
-      y={yAbs}
-      z={z}
       alt=''
       className='monster'
       style={{
