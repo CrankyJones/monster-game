@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import { atom, useRecoilState }  from 'recoil';
-import { buildingState } from './Building';
+import { singleBuildingAtom } from './Atoms';
 
 function Inputs() {
   const monsterState = atom ({
@@ -9,7 +9,7 @@ function Inputs() {
   });
 
   const [monster, setMonster] = useRecoilState(monsterState);
-  const [building, setBuilding] = useRecoilState(buildingState);
+  const [building, setBuilding] = useRecoilState(singleBuildingAtom(building.id));
   
   const allowInputState = atom ({
     key: 'allowInput',
@@ -38,6 +38,7 @@ function Inputs() {
 
     if (e.keyCode === 65){
       let updatedHealth;
+      // buildings.map((building) => {
       if ((monster.x === building.x && monster.y -1  === building.y && monster.facing === 'up') ||
       (monster.x === building.x && monster.y +1 === building.y && monster.facing === 'down') ||
       (monster.x - 1 === building.x && monster.y === building.y && monster.facing === 'right') ||
@@ -48,6 +49,7 @@ function Inputs() {
           y: building.y,
           health: updatedHealth})
       };
+    // })
     }
     else if (e.keyCode === 37) {
       // left
