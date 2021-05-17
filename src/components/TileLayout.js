@@ -22,7 +22,7 @@ const TileLayout = () => {
       const yBase = y * yOffset;
       const xBase = 50 - (100/22) * y;
       return row.map((tile, x) => {
-        const z = x + 50;
+        const z = x;
         const yAbs = yBase + yOffset * x;
         const xAbs = xBase + (100/22) * x;
         let src;

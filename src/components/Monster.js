@@ -18,6 +18,7 @@ const Monster = () => {
   const xBase = 50 - (100/22) * monster.y;
   const yAbs = yBase + yOffset * monster.x;
   const xAbs = xBase + (100/22) * monster.x;
+  const monsterZ = monster.x + monster.y + 10;
 
   let monsterImg;
   // if (monster.dead) {
@@ -40,7 +41,8 @@ const Monster = () => {
       className='monster'
       style={{
         left: `${xAbs}%`,
-        top: `${yAbs}%`
+        top: `${yAbs}%`,
+        zIndex: `${monsterZ}`
       }}
     ></img>
   )

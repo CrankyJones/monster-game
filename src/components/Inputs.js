@@ -4,7 +4,7 @@ import { atom, useRecoilState}  from 'recoil';
 function Inputs() {
   const monsterState = atom ({
     key: "monsterState",
-    default: { x:5, y:10, facing: 'down', dead: 'false'},
+    default: { x:5, y:10, z:5 + 10 + 10, facing: 'up', dead: 'false'},
   });
 
   const [monster, setMonster] = useRecoilState(monsterState);
@@ -28,6 +28,7 @@ function Inputs() {
     if (!allowInput || monster.dead === true) {
       return;
     }
+    console.log(e);
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
       setAllowInput(true);
@@ -37,6 +38,7 @@ function Inputs() {
       setMonster ({
         x: monster.x > 0 ? monster.x - 1 : 0,
         y: monster.y,
+        z: monster.z + 1,
         facing: 'left'
       });
     }
@@ -45,6 +47,7 @@ function Inputs() {
       setMonster ({
         x: monster.x < 10  ? monster.x + 1 : 10,
         y: monster.y,
+        z: monster.z - 1,
         facing: 'right'
       });
     }
@@ -53,6 +56,7 @@ function Inputs() {
       setMonster ({
         x: monster.x, 
         y: monster.y > 0 ? monster.y - 1 : 0,
+        z: monster.z - 1,
         facing: 'up'
       });
     }
@@ -61,6 +65,7 @@ function Inputs() {
       setMonster ({
         x: monster.x,
         y: monster.y < 10 ? monster.y + 1 : 10,
+        z: monster.z + 1,
         facing: 'down'
       });
     }

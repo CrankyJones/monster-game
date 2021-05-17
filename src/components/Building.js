@@ -5,11 +5,16 @@ import buildingImg from '.././img/buildingImg.png'
 // import damagedBuilding from '.././img/damagedBuilding.png';
 // import destroyedBuilding from '.././img/destroyedBuilding.png';
 
+const buildingState = atom ({
+  key: 'buildingState',
+  default: {x:5, y:3, health:3}
+})
+
 const Building = () => {
-  const buildingState = atom ({
-    key: 'buildingState',
-    default: {x:5, y:3, health:3}
-  })
+  // for(let i=0; i<5; i++){
+  //   let x= Math.random(1,10);
+  //   let y = Math.randome(1,10);
+  // }
 
 // Create 6 buildings with random coords? loop thruogh underneath?
 
@@ -20,13 +25,17 @@ const Building = () => {
   const xBase = 50 - (100/22) * building.y;
   const yAbs = yBase + yOffset * building.x;
   const xAbs = xBase + (100/22) * building.x;
+  const buildingZ = (building.x + building.y + 10);
+  console.log(buildingZ);
+
 return (
   <img src={buildingImg}
       alt=''
       className='building'
       style={{
         left: `${xAbs}%`,
-        top: `${yAbs}%`
+        top: `${yAbs}%`,
+        zIndex: `${Math.trunc(buildingZ)}`
       }}
     ></img>
   )
