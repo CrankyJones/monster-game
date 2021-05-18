@@ -2,13 +2,15 @@ import React, { useEffect, useCallback, useRef } from 'react';
 import { atom, useRecoilState }  from 'recoil';
 import { singleBuildingAtom, buildingsAtom } from './Atoms';
 
+let buildingRefresh;
+
 function Inputs() {
   const monsterState = atom ({
     key: "monsterState",
     default: { x:5, y:10, facing: 'up', dead: 'false'},
   });
   const [monster, setMonster] = useRecoilState(monsterState);
-  const [building, setBuilding] = useRecoilState(singleBuildingAtom());
+  // const [building, setBuilding] = useRecoilState(singleBuildingAtom());
   const [buildings, setBuildings] = useRecoilState(buildingsAtom);
   
   const allowInputState = atom ({
@@ -119,30 +121,27 @@ function Inputs() {
     };
     function monsterAttack(e){
       console.log('getting here');
-      buildings.forEach((building) => {
-      if (e.keyCode === 65){
-        let updatedHealth;
-        if ((monster.x === building.value.x && monster.y -1  === building.value.y && monster.facing === 'up') ||
-        (monster.x === building.value.x && monster.y +1 === building.value.y && monster.facing === 'down') ||
-        (monster.x - 1 === building.value.x && monster.y === building.value.y && monster.facing === 'right') ||
-        (monster.x + 1 === building.value.x && monster.y === building.value.y && monster.facing === 'left')) {
-          updatedHealth = building.value.health - 1;
-          console.log(building);
-          building.value.health = updatedHealth;
-          console.log(building);
-        }
-      };
-    })
-  }
-
-
-
-          // setBuilding({
-          //   key: building.key,
-          //   x: building.x,
-          //   y: building.y,
-          //   health: updatedHealth})
-          // }
+      const newBuildings = buildings.map((building) => {
+        if (e.keyCode === 65){
+          if ((monster.x === building.value.x && monster.y -1  === building.value.y && monster.facing === 'up') ||
+          (monster.x === building.value.x && monster.y + 1 === building.value.y && monster.facing === 'down') ||
+          (monster.x - 1 === building.value.x && monster.y === building.value.y && monster.facing === 'left') ||
+          (monster.x + 1 === building.value.x && monster.y === building.value.y && monster.facing === 'right')) {
+            const updatedHealth = building.value.health - 1;
+              const updateHealth = () => {
+                const updatedStuff = ({...building, value:{...building.value, ['health']: updatedHealth}});
+                return updatedStuff;
+              }
+              return updateHealth();
+            } else {
+              return building;
+            }
+          } else {
+            return building;
+          }          
+        });
+        setBuildings(newBuildings);
+    }
 
     checkBuilding(e);
     if (buildingCheckBool === false) {
@@ -152,7 +151,8 @@ function Inputs() {
       monsterAttack(e);
     };    
     checkBuilding(e);
-    // checkBuilding(e);
+    // buildingRefresh = buildings;
+    // console.log(buildingRefresh);
     // if (buildingCheckBool === false) {
     //   moveMonster(e);
     // } else if (buildingCheckBool === true){
@@ -161,17 +161,18 @@ function Inputs() {
     // };    
     // checkBuilding(e);
 
+    // setBuildings(buildingRefresh);
 
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
       setAllowInput(true);
     }, 500);
   },
-  [monster, allowInput, setAllowInput]
+  [monster, setMonster, buildings, setBuildings, allowInput, setAllowInput]
 );    
-
-
-
+// console.log('what i want');
+// console.log(buildingRefresh);
+// buildingRefresh = buildings;
 
 useEffect(() =>{
   window.addEventListener('keydown', handleKeyPress);
@@ -181,7 +182,8 @@ useEffect(() =>{
 }, [handleKeyPress]);
 return '';
 }
-
+// console.log(buildingRefresh);
+// setBuildings(...buildings, )
 export default Inputs;
 
 
