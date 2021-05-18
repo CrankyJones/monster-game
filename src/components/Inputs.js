@@ -7,7 +7,6 @@ function Inputs() {
     key: "monsterState",
     default: { x:5, y:10, facing: 'up', dead: 'false'},
   });
-
   const [monster, setMonster] = useRecoilState(monsterState);
   const [building, setBuilding] = useRecoilState(singleBuildingAtom());
   const [buildings, setBuildings] = useRecoilState(buildingsAtom);
@@ -24,95 +23,129 @@ function Inputs() {
     return () => {
       clearTimeout(movementTimer.current);
     };
-  }, [movementTimer]);
+  }, [movementTimer]);  
   
   const handleKeyPress = useCallback((e) => {
     e.preventDefault();
+    let buildingCheckBool;
     if (!allowInput || monster.dead === true) {
       return;
     }
-    console.log(e);
+    function checkBuilding(e) {
+      buildings.forEach((building) => {
+        if (e.keyCode === 37) {
+          // left
+          if (monster.x - 1 === building.value.x && monster.y === building.value.y) { 
+            console.log('DID IT GET HERE');
+            setMonster ({
+              x: monster.x,
+              y: monster.y,
+              facing: 'left'
+            })
+            buildingCheckBool = true;
+          } else {
+            buildingCheckBool = false;
+          }
+        }
+        else if (e.keyCode === 39) {
+          //right    
+          if (monster.x + 1 === building.value.x && monster.y === building.value.y) { 
+            setMonster ({
+              x: monster.x,
+              y: monster.y,
+              facing: 'right'
+            })
+            buildingCheckBool = true;
+          } else {
+            buildingCheckBool = false;
+          }
+        }
+        else if (e.keyCode === 38) {
+          //up    
+          if (monster.x === building.value.x && monster.y - 1 === building.value.y) { 
+            setMonster ({
+              x: monster.x,
+              y: monster.y,
+              facing: 'up'
+            })
+            buildingCheckBool = true;
+          } else {
+            buildingCheckBool = false;
+          }
+        }
+        else if (e.keyCode === 40) {
+          //down    
+          if (monster.x === building.value.x && monster.y + 1 === building.value.y) { 
+            setMonster ({
+              x: monster.x,
+              y: monster.y,
+              facing: 'down'
+            })
+            buildingCheckBool = true;
+          } else {
+            buildingCheckBool = false;
+          }
+        }
+      })
+    };
+    function moveMonster(e) {
+      if (e.keyCode === 37){
+        setMonster ({
+          x: monster.x > 0 ? monster.x - 1 : 0,
+          y: monster.y,
+          facing: 'left',
+        });
+      }
+      else if (e.keyCode === 39) {
+        setMonster ({
+          x: monster.x < 10  ? monster.x + 1 : 10,
+          y: monster.y,
+          facing: 'right',
+        });
+      }  
+      else if (e.keyCode === 38) {
+        setMonster ({
+          x: monster.x, 
+          y: monster.y > 1 ? monster.y - 1 : 1,
+          facing: 'up',
+        });
+      }
+      else if (e.keyCode === 40) {
+        setMonster ({
+          x: monster.x,
+          y: monster.y < 10 ? monster.y + 1 : 10,
+          facing: 'down',
+        });
+      }
+    };
+    checkBuilding(e);
+    if (buildingCheckBool === false) {
+      moveMonster(e);
+    };    
+    checkBuilding(e);
+
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
       setAllowInput(true);
     }, 500);
+  },
+  [monster, allowInput, setAllowInput]
+);    
 
-    if (e.keyCode === 65){
-      let updatedHealth;
-      // buildings.map((building) => {
-      if ((monster.x === building.x && monster.y -1  === building.y && monster.facing === 'up') ||
-      (monster.x === building.x && monster.y +1 === building.y && monster.facing === 'down') ||
-      (monster.x - 1 === building.x && monster.y === building.y && monster.facing === 'right') ||
-      (monster.x + 1 === building.x && monster.y === building.y && monster.facing === 'left')) {
-        updatedHealth = building.health - 1;
-        setBuilding({
-          x: building.x,
-          y: building.y,
-          health: updatedHealth})
-      };
-    // })
-    }
-    else if (e.keyCode === 37) {
-      // left
-      // buildings.map((building) => {})
-      if (monster.x - 1 === building.x && monster.y === building.y) { 
-        setMonster ({
-          x: monster.x,
-          y: monster.y,
-          facing: 'left'
-        });
-      } else {
-      setMonster ({
-        x: monster.x > 0 ? monster.x - 1 : 0,
-        y: monster.y,
-        facing: 'left',
-      })};
-    }
-    else if (e.keyCode === 39) {
-      //right    
-      if (monster.x + 1 === building.x && monster.y === building.y) { 
-        setMonster ({
-          x: monster.x,
-          y: monster.y,
-          facing: 'right'
-        });
-      } else {
-      setMonster ({
-        x: monster.x < 10  ? monster.x + 1 : 10,
-        y: monster.y,
-        facing: 'right',
-      })};
-    }
-    else if (e.keyCode === 38) {
-      //up    
-      if (monster.x === building.x && monster.y - 1 === building.y) { 
-        setMonster ({
-          x: monster.x,
-          y: monster.y,
-          facing: 'up'
-        });
-      } else {
-      setMonster ({
-        x: monster.x, 
-        y: monster.y > 0 ? monster.y - 1 : 0,
-        facing: 'up',
-      })};
-    }
-    else if (e.keyCode === 40) {
-      //down    
-      if (monster.x === building.x && monster.y + 1 === building.y) { 
-        setMonster ({
-          x: monster.x,
-          y: monster.y,
-          facing: 'down'
-        });
-      } else {
-      setMonster ({
-        x: monster.x,
-        y: monster.y < 10 ? monster.y + 1 : 10,
-        facing: 'down',
-      })};
-    }
+
+
+
+useEffect(() =>{
+  window.addEventListener('keydown', handleKeyPress);
+  return() => {
+    window.removeEventListener('keydown', handleKeyPress);
+  };
+}, [handleKeyPress]);
+return '';
+}
+
+export default Inputs;
+
 
     // Shift modifier?????
     // else if (e.keyCode === 16) {
@@ -141,16 +174,3 @@ function Inputs() {
     //     });
     //   }
     // }
-  },
-  [monster, setMonster, allowInput, setAllowInput, building, setBuilding, buildings]
-);    
-useEffect(() =>{
-  window.addEventListener('keydown', handleKeyPress);
-  return() => {
-    window.removeEventListener('keydown', handleKeyPress);
-  };
-}, [handleKeyPress]);
-return '';
-}
-
-export default Inputs;

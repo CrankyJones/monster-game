@@ -12,8 +12,6 @@ import buildingImg from '.././img/buildingImg.png';
 const BuildingLayout = () => {
   // const building = useRecoilValue(singleBuildingAtom(props.id));
   const buildings = useRecoilValue(buildingsAtom);
-  console.log(buildings);
-  Object.entries(buildings).map(([k,v]) => {     console.log(k, v) });
   return (
     <>
       {Object.entries(buildings).map(([k, v]) => <Building key={k} x={v.value.x} y={v.value.y}/>)}
