@@ -36,12 +36,11 @@ function Inputs() {
         if (e.keyCode === 37) {
           // left
           if (monster.x - 1 === building.value.x && monster.y === building.value.y) { 
-            console.log('DID IT GET HERE');
             setMonster ({
               x: monster.x,
               y: monster.y,
               facing: 'left'
-            })
+            });
             buildingCheckBool = true;
           } else {
             buildingCheckBool = false;
@@ -118,11 +117,50 @@ function Inputs() {
         });
       }
     };
+    function monsterAttack(e){
+      console.log('getting here');
+      buildings.forEach((building) => {
+      if (e.keyCode === 65){
+        let updatedHealth;
+        if ((monster.x === building.value.x && monster.y -1  === building.value.y && monster.facing === 'up') ||
+        (monster.x === building.value.x && monster.y +1 === building.value.y && monster.facing === 'down') ||
+        (monster.x - 1 === building.value.x && monster.y === building.value.y && monster.facing === 'right') ||
+        (monster.x + 1 === building.value.x && monster.y === building.value.y && monster.facing === 'left')) {
+          updatedHealth = building.value.health - 1;
+          console.log(building);
+          building.value.health = updatedHealth;
+          console.log(building);
+        }
+      };
+    })
+  }
+
+
+
+          // setBuilding({
+          //   key: building.key,
+          //   x: building.x,
+          //   y: building.y,
+          //   health: updatedHealth})
+          // }
+
     checkBuilding(e);
     if (buildingCheckBool === false) {
       moveMonster(e);
+    } else {
+      console.log('attack branch');
+      monsterAttack(e);
     };    
     checkBuilding(e);
+    // checkBuilding(e);
+    // if (buildingCheckBool === false) {
+    //   moveMonster(e);
+    // } else if (buildingCheckBool === true){
+    //   console.log('attack branch');
+    //   monsterAttack(e);
+    // };    
+    // checkBuilding(e);
+
 
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
