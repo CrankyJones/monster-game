@@ -1,13 +1,13 @@
 import TileLayout from './TileLayout';
 import Monster from './Monster';
-import Building from './Building';
+import BuildingLayout from './BuildingLayout';
 
 const World = () => {
   return (
     <div className='world'>
       <Monster/>
       <TileLayout/>
-      <Building/>
+      <BuildingLayout/>
     </div>
   )
 }

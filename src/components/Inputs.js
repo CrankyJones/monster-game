@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import { atom, useRecoilState }  from 'recoil';
-import { singleBuildingAtom } from './Atoms';
+import { singleBuildingAtom, buildingsAtom } from './Atoms';
 
 function Inputs() {
   const monsterState = atom ({
@@ -9,7 +9,8 @@ function Inputs() {
   });
 
   const [monster, setMonster] = useRecoilState(monsterState);
-  const [building, setBuilding] = useRecoilState(singleBuildingAtom(building.id));
+  const [building, setBuilding] = useRecoilState(singleBuildingAtom());
+  const [buildings, setBuildings] = useRecoilState(buildingsAtom);
   
   const allowInputState = atom ({
     key: 'allowInput',
@@ -141,7 +142,7 @@ function Inputs() {
     //   }
     // }
   },
-  [monster, setMonster, allowInput, setAllowInput, building, setBuilding]
+  [monster, setMonster, allowInput, setAllowInput, building, setBuilding, buildings]
 );    
 useEffect(() =>{
   window.addEventListener('keydown', handleKeyPress);
