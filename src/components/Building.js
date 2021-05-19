@@ -86,10 +86,6 @@ const Building = ({x, y, health}) => {
   } else if (health < 0) {
     return (
       <>
-        <ReactAudioPlayer
-          src={MonsterHit}
-          autoPlay
-        /> 
       <img src={damagedBuilding3}
         alt=''
         className='building'
