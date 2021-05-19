@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import { atom, useRecoilState }  from 'recoil';
-import { singleBuildingAtom, buildingsAtom } from './Atoms';
+import { buildingsAtom } from './Atoms';
 
 function Inputs() {
   const monsterState = atom ({
@@ -8,7 +8,6 @@ function Inputs() {
     default: { x:5, y:10, facing: 'up', dead: 'false'},
   });
   const [monster, setMonster] = useRecoilState(monsterState);
-  // const [building, setBuilding] = useRecoilState(singleBuildingAtom());
   const [buildings, setBuildings] = useRecoilState(buildingsAtom);
   
   const allowInputState = atom ({

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-// import { atom, useRecoilState, useRecoilValue } from "recoil";
+import React from "react";
 import World from "./World";
 import Inputs from "./Inputs";
 

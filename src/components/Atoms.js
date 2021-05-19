@@ -5,8 +5,3 @@ export const buildingsAtom = atom({
   key: 'buildings',
   default: buildings
 });
-
-export const singleBuildingAtom = (id) => atom({
-  key: `building${id}`,
-  default: {health: 3}
-});

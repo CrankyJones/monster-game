@@ -1,16 +1,9 @@
 import React from 'react';
-
 import Building from './Building';
-import { atom, constSelector, useRecoilState, useRecoilValue } from 'recoil';
-import { buildingsAtom, singleBuildingAtom } from './Atoms';
-import buildingImg from '.././img/buildingImg.png';
-// import damagedBuilding from '.././img/damagedBuilding.png';
-// import destroyedBuilding from '.././img/destroyedBuilding.png';
-
-
+import { useRecoilValue } from 'recoil';
+import { buildingsAtom } from './Atoms';
 
 const BuildingLayout = () => {
-  // const building = useRecoilValue(singleBuildingAtom(props.id));
   const buildings = useRecoilValue(buildingsAtom);
   return (
     <>

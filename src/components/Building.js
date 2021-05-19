@@ -8,7 +8,6 @@ import MonsterHit from '.././audio/MonsterHit.wav';
 import MonsterHit2 from '.././audio/MonsterHit2.wav';
 import BuildingDestroyed from '.././audio/BuildingDestroyed.wav';
 import ReactAudioPlayer from 'react-audio-player'
-import { buildings } from '../constants/Buildings';
 
 const Building = ({x, y, health}) => {
   const yOffset = ((100 / WORLD_SIZE) * (TILE_RATIO / 2.75));
@@ -30,14 +29,50 @@ const Building = ({x, y, health}) => {
         }}
       ></img>
   )
-} else if (health === 2) {
-  return (
-    <>
-      <ReactAudioPlayer
-        src={MonsterHit}
-        autoPlay
-      />  
-      <img src={damagedBuilding1}
+  } else if (health === 2) {
+    return (
+      <>
+        <ReactAudioPlayer
+          src={MonsterHit}
+          autoPlay
+        />  
+        <img src={damagedBuilding1}
+          alt=''
+          className='building'
+          style={{
+          left: `${xAbs}%`,
+          top: `${yAbs}%`,
+          zIndex: `${buildingZ}`
+          }}
+        ></img>
+      </>
+    )
+  } else if (health === 1) {
+    return (
+      <>
+        <ReactAudioPlayer
+          src={MonsterHit2}
+          autoPlay
+        /> 
+        <img src={damagedBuilding2}
+          alt=''
+          className='building'
+          style={{
+          left: `${xAbs}%`,
+          top: `${yAbs}%`,
+          zIndex: `${buildingZ}`
+          }}
+        ></img>
+      </>
+    )
+  } else if (health === 0) {
+    return (
+      <>
+        <ReactAudioPlayer
+          src={BuildingDestroyed}
+          autoPlay
+        /> 
+      <img src={damagedBuilding3}
         alt=''
         className='building'
         style={{
@@ -46,17 +81,16 @@ const Building = ({x, y, health}) => {
         zIndex: `${buildingZ}`
         }}
       ></img>
-  </>
-  )
-
-} else if (health === 1) {
-  return (
-    <>
-      <ReactAudioPlayer
-        src={MonsterHit2}
-        autoPlay
-      /> 
-      <img src={damagedBuilding2}
+      </>
+    )
+  } else if (health < 0) {
+    return (
+      <>
+        <ReactAudioPlayer
+          src={MonsterHit}
+          autoPlay
+        /> 
+      <img src={damagedBuilding3}
         alt=''
         className='building'
         style={{
@@ -65,96 +99,8 @@ const Building = ({x, y, health}) => {
         zIndex: `${buildingZ}`
         }}
       ></img>
-    </>
-  )
-
-}
-else if (health === 0) {
-  return (
-    <>
-      <ReactAudioPlayer
-        src={BuildingDestroyed}
-        autoPlay
-      /> 
-    <img src={damagedBuilding3}
-      alt=''
-      className='building'
-      style={{
-      left: `${xAbs}%`,
-      top: `${yAbs}%`,
-      zIndex: `${buildingZ}`
-      }}
-    ></img>
-    </>
-  )
-
-}
-else if (health < 0) {
-  return (
-    <>
-      <ReactAudioPlayer
-        src={MonsterHit}
-        autoPlay
-      /> 
-    <img src={damagedBuilding3}
-      alt=''
-      className='building'
-      style={{
-      left: `${xAbs}%`,
-      top: `${yAbs}%`,
-      zIndex: `${buildingZ}`
-      }}
-    ></img>
-    </>
-  )
-
-}
-
+      </>
+    )
+  }
 }
 export default Building;
-    
-    
-    
-    
-    
-    // import React from 'react';
-    // import { atom, constSelector, useRecoilState, useRecoilValue } from 'recoil';
-    // import { buildingsAtom, singleBuildingAtom } from './Atoms';
-    // // import damagedBuilding from '.././img/damagedBuilding.png';
-    // // import destroyedBuilding from '.././img/destroyedBuilding.png';
-    
-    
-    
-    // const Building = (props) => {
-      //   // const building = useRecoilValue(singleBuildingAtom(props.id));
-      //   const buildings = useRecoilValue(buildingsAtom);
-      
-      //   return (
-        //     <>
-        //       {buildings.map((building) => {
-          
-          //         console.log(building);
-          //     const yOffset = ((100 / WORLD_SIZE) * (TILE_RATIO / 2.75));
-          //     const yBase = building.y * yOffset + yOffset;
-          //     const xBase = 50 - (100/22) * building.y;
-          //     const yAbs = yBase + yOffset * building.x;
-          //     const xAbs = xBase + (100/22) * building.x;
-          //     const buildingZ = (building.x + building.y + 10);
-          
-          
-          //         <img src={buildingImg}
-          //           alt=''
-          //           className='building'
-          //           style={{
-            //             left: `${xAbs}%`,
-            //             top: `${yAbs}%`,
-            //             zIndex: `${buildingZ}`
-            //           }}
-            //         ></img>
-            //         }
-            
-            //       )}
-            //     </>    
-            //       );
-            //     }
-            

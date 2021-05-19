@@ -21,9 +21,6 @@ const Monster = () => {
   const monsterZ = monster.x + monster.y + 11;
 
   let monsterImg;
-  // if (monster.dead) {
-  //   monsterImg = monsterDead;
-  // } else 
   
   if (monster.facing === 'up') {
     monsterImg = monsterNE;
@@ -45,8 +42,7 @@ const Monster = () => {
         zIndex: `${monsterZ}`
       }}
     ></img>
-  )
-    
+  )    
 }  
 
 export default Monster;
