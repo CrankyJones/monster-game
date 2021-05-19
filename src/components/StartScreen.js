@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import  Modal  from 'react-bootstrap/Modal';
 import monster from '.././img/splashsnip2.PNG'
 
 
@@ -13,13 +13,9 @@ function StartScreen() {
 
   return (
     <>
-    <div className='splashscreen'>
+    <div className='splashScreen'>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-        </Modal.Header>
-        <Modal.Body size='fit-content'>
-          <img  src={monster}/>
-        </Modal.Body>
+          <img className='titleLogo' src={monster}/>
       </Modal>
     </div>
     </>

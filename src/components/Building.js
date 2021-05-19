@@ -1,6 +1,6 @@
 import React from 'react';
 import { WORLD_SIZE, TILE_RATIO} from '../constants/Constants';
-import buildingImg from '.././img/buildingImg.png';
+import buildingImg from '.././img/buildinguprezresize.png';
 import damagedBuilding1 from '.././img/DamagedBuilding.png';
 import damagedBuilding2 from '.././img/DamagedBuilding2.png';
 import damagedBuilding3 from '.././img/DamagedBuilding3.png';
@@ -38,13 +38,14 @@ const Building = ({x, y, health}) => {
         />  
         <img src={damagedBuilding1}
           alt=''
+          className='damagedBuidling'
           className='building'
           style={{
-          left: `${xAbs}%`,
-          top: `${yAbs}%`,
-          zIndex: `${buildingZ}`
+            left: `${xAbs}%`,
+            top: `${yAbs}%`,
+            zIndex: `${buildingZ}`
           }}
-        ></img>
+          ></img>
       </>
     )
   } else if (health === 1) {
@@ -53,16 +54,17 @@ const Building = ({x, y, health}) => {
         <ReactAudioPlayer
           src={MonsterHit2}
           autoPlay
-        /> 
+          /> 
         <img src={damagedBuilding2}
           alt=''
+          className='damagedBuidling'
           className='building'
           style={{
-          left: `${xAbs}%`,
-          top: `${yAbs}%`,
-          zIndex: `${buildingZ}`
+            left: `${xAbs}%`,
+            top: `${yAbs}%`,
+            zIndex: `${buildingZ}`
           }}
-        ></img>
+          ></img>
       </>
     )
   } else if (health === 0) {
@@ -71,9 +73,10 @@ const Building = ({x, y, health}) => {
         <ReactAudioPlayer
           src={BuildingDestroyed}
           autoPlay
-        /> 
+          /> 
       <img src={damagedBuilding3}
         alt=''
+        className='damagedBuidling'
         className='building'
         style={{
         left: `${xAbs}%`,
