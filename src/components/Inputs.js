@@ -2,8 +2,6 @@ import React, { useEffect, useCallback, useRef } from 'react';
 import { atom, useRecoilState }  from 'recoil';
 import { singleBuildingAtom, buildingsAtom } from './Atoms';
 
-let buildingRefresh;
-
 function Inputs() {
   const monsterState = atom ({
     key: "monsterState",
@@ -120,7 +118,6 @@ function Inputs() {
       }
     };
     function monsterAttack(e){
-      console.log('getting here');
       const newBuildings = buildings.map((building) => {
         if (e.keyCode === 65){
           if ((monster.x === building.value.x && monster.y -1  === building.value.y && monster.facing === 'up') ||
@@ -147,22 +144,9 @@ function Inputs() {
     if (buildingCheckBool === false) {
       moveMonster(e);
     } else {
-      console.log('attack branch');
       monsterAttack(e);
     };    
     checkBuilding(e);
-    // buildingRefresh = buildings;
-    // console.log(buildingRefresh);
-    // if (buildingCheckBool === false) {
-    //   moveMonster(e);
-    // } else if (buildingCheckBool === true){
-    //   console.log('attack branch');
-    //   monsterAttack(e);
-    // };    
-    // checkBuilding(e);
-
-    // setBuildings(buildingRefresh);
-
     setAllowInput(false);
     movementTimer.current = setTimeout(() => {
       setAllowInput(true);
@@ -170,9 +154,6 @@ function Inputs() {
   },
   [monster, setMonster, buildings, setBuildings, allowInput, setAllowInput]
 );    
-// console.log('what i want');
-// console.log(buildingRefresh);
-// buildingRefresh = buildings;
 
 useEffect(() =>{
   window.addEventListener('keydown', handleKeyPress);
@@ -182,8 +163,6 @@ useEffect(() =>{
 }, [handleKeyPress]);
 return '';
 }
-// console.log(buildingRefresh);
-// setBuildings(...buildings, )
 export default Inputs;
 
 

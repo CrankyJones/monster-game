@@ -1,10 +1,10 @@
 import React from 'react';
 import { WORLD_SIZE, TILE_RATIO} from '../constants/Constants';
 import { atom, useRecoilValue } from 'recoil';
-import monsterNE from '../img/monsterNE.png';
-import monsterSE from '../img/monsterSE.png';
-import monsterNW from '../img/monsterNW.png';
-import monsterSW from '../img/monsterSW.png';
+import monsterNE from '../img/MonsterNE.png';
+import monsterSE from '../img/MonsterSE.png';
+import monsterNW from '../img/MonsterNW.png';
+import monsterSW from '../img/MonsterSW.png';
 
 const Monster = () => {
   const monsterState = atom ({

@@ -1,6 +1,13 @@
 import React from 'react';
 import { WORLD_SIZE, TILE_RATIO} from '../constants/Constants';
 import buildingImg from '.././img/buildingImg.png';
+import damagedBuilding1 from '.././img/DamagedBuilding.png';
+import damagedBuilding2 from '.././img/DamagedBuilding2.png';
+import damagedBuilding3 from '.././img/DamagedBuilding3.png';
+import MonsterHit from '.././audio/MonsterHit.wav';
+import MonsterHit2 from '.././audio/MonsterHit2.wav';
+import BuildingDestroyed from '.././audio/BuildingDestroyed.wav';
+import ReactAudioPlayer from 'react-audio-player'
 import { buildings } from '../constants/Buildings';
 
 const Building = ({x, y, health}) => {
@@ -13,32 +20,63 @@ const Building = ({x, y, health}) => {
     
   if (health === 3) {
   return (
-    <img src={buildingImg}
-      alt=''
-      className='building'
-      style={{
-      left: `${xAbs}%`,
-      top: `${yAbs}%`,
-      zIndex: `${buildingZ}`
-      }}
-    ></img>
+      <img src={buildingImg}
+        alt=''
+        className='building'
+        style={{
+        left: `${xAbs}%`,
+        top: `${yAbs}%`,
+        zIndex: `${buildingZ}`
+        }}
+      ></img>
   )
-} else if (health > 0) {
+} else if (health === 2) {
   return (
-    <img src={null}
-      alt=''
-      className='building'
-      style={{
-      left: `${xAbs}%`,
-      top: `${yAbs}%`,
-      zIndex: `${buildingZ}`
-      }}
-    ></img>
+    <>
+      <ReactAudioPlayer
+        src={MonsterHit}
+        autoPlay
+      />  
+      <img src={damagedBuilding1}
+        alt=''
+        className='building'
+        style={{
+        left: `${xAbs}%`,
+        top: `${yAbs}%`,
+        zIndex: `${buildingZ}`
+        }}
+      ></img>
+  </>
   )
 
-} else if (health <= 0) {
+} else if (health === 1) {
   return (
-    <img src={buildingImg}
+    <>
+      <ReactAudioPlayer
+        src={MonsterHit2}
+        autoPlay
+      /> 
+      <img src={damagedBuilding2}
+        alt=''
+        className='building'
+        style={{
+        left: `${xAbs}%`,
+        top: `${yAbs}%`,
+        zIndex: `${buildingZ}`
+        }}
+      ></img>
+    </>
+  )
+
+}
+else if (health === 0) {
+  return (
+    <>
+      <ReactAudioPlayer
+        src={BuildingDestroyed}
+        autoPlay
+      /> 
+    <img src={damagedBuilding3}
       alt=''
       className='building'
       style={{
@@ -47,6 +85,27 @@ const Building = ({x, y, health}) => {
       zIndex: `${buildingZ}`
       }}
     ></img>
+    </>
+  )
+
+}
+else if (health < 0) {
+  return (
+    <>
+      <ReactAudioPlayer
+        src={MonsterHit}
+        autoPlay
+      /> 
+    <img src={damagedBuilding3}
+      alt=''
+      className='building'
+      style={{
+      left: `${xAbs}%`,
+      top: `${yAbs}%`,
+      zIndex: `${buildingZ}`
+      }}
+    ></img>
+    </>
   )
 
 }

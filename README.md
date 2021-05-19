@@ -5,7 +5,7 @@
 ---
 
 ## Description
-  A simple isometric game in which you play as a monster that navigates a tile grid in order to destroy buildings. Players move using the arrow keys.
+  A simple isometric game in which you play as a monster that navigates a tile grid in order to destroy buildings. Players move using the arrow keys and attack buildings with 'A'.
 
 ---
 ## Technologies Used
